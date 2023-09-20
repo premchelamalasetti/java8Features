@@ -2,6 +2,9 @@ package com.java8feature;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class Java8Features {
 
@@ -17,5 +20,12 @@ public class Java8Features {
 		list.stream().forEach(System.out::println);
 
 		System.out.println("----" + slist + "------");
+		Consumer<Integer>  consumer= t -> System.out.println(t);
+		consumer.accept(113);
+		
+		List<String> listToMap =Arrays.asList("1:prem","2:kumar","3:ch");
+		Map<String, String> lmap=listToMap.stream().map(s -> s.split(":"))
+				.collect(Collectors.toMap( pair -> pair[0], pair -> pair[1]));
+		lmap.forEach((key,value) -> System.out.println(key+" key "+value+" value"));
 	}
 }
